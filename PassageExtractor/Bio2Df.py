@@ -131,8 +131,14 @@ class Bio2Df:
 
 
 if __name__ == '__main__':
-    runner = Bio2Df("../GWAS_data/nxml_bugfinding/bio/")
-    runner.execute()
-    runner.get_df()
-    print "Finished processing all files"
+    # runner = Bio2Df("../../GWAS_data/nxml_bugfinding/bio/")
+    # runner.execute()
+    # df = runner.get_df()
+    # print df.columns
+    # print df
+    # print "Finished processing all files"
+    bio_to_df = Bio2Df("/Users/suvir/Documents/GWAS/Fall Research/Gold Standard/EFO DiseaseTrait GoldStandard/")
+    bio_to_df.execute()
+    df = bio_to_df.get_df()
+    df.to_csv('../temp_store.csv', sep='\t', index=False, index_label=False)
 

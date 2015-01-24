@@ -205,8 +205,8 @@ class Raw2Bio:
 
 
 if __name__ == '__main__':
-    runner = Raw2Bio("../GWAS_data/nxml_bugfinding/",
-                     "../GWAS_data/gazzetteers/efo_disease_traits",
-                     "../GWAS_data/nxml_bugfinding/bio/")
+    runner = Raw2Bio("../../GWAS_data/nxml_bugfinding/",
+                     "../../GWAS_data/gazzetteers/efo_disease_traits",
+                     "../../GWAS_data/nxml_bugfinding/bio/")
     runner.execute()
     print "Finished processing all files"
