@@ -1,6 +1,6 @@
 __author__ = 'suvir'
 import numpy as np
-
+from pprint import pprint
 
 class LabelEstimator(object):
     def __init__(self, matrix_filename):
@@ -15,14 +15,14 @@ class LabelEstimator(object):
         I, J = rows, cols
 
         # Laplace priors
-        k1, K1 = 0.2, 1
-        k2, K2 = 0.2, 1
+        k1, K1 = 1, 1
+        k2, K2 = 1, 1
 
         #More tunable constants
         t = 0
         eps = 1
         maxT = 1000
-        threshold = 1e-6
+        threshold = 1e-10
 
         while t < maxT:
             if eps <= threshold:
@@ -31,12 +31,13 @@ class LabelEstimator(object):
                 break
             print t
             updates = np.zeros(shape=(1, cols))
+            P_past = P
 
             print "Updating p(t)"
             for i in range(rows):
                 errSum = 0.0
                 for j in range(cols):
-                    errSum += (1 - E[0, j] * (t - 1)) * mat[i, j]
+                    errSum += (1 - E[0, j]) * mat[i, j]
                 P[i, 0] = (errSum + k1) / (J + K1)
 
             print "Updating e(t)"
@@ -47,13 +48,15 @@ class LabelEstimator(object):
                 updates[0, j] = (passageSum + k2) / (I + K2)
 
             print "Calculating delta"
-            eps = (updates - E).mean()
+            eps = max(abs(updates - E).max(), abs(P_past - P).max())
 
             print "Updating error vector"
             E = updates
             t += 1
+        return (P, E)
 
 
 if __name__ == "__main__":
-    est = LabelEstimator("../committee_matrix.txt")
-    est.estimate()
+    est = LabelEstimator("./committee_matrix.txt")
+    ret = est.estimate()
+    pprint(ret)
