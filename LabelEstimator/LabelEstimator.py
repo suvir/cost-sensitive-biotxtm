@@ -2,6 +2,7 @@ __author__ = 'suvir'
 import numpy as np
 from pprint import pprint
 
+
 class LabelEstimator(object):
     def __init__(self, matrix_filename):
         self.mat = np.loadtxt(matrix_filename)
@@ -18,7 +19,7 @@ class LabelEstimator(object):
         k1, K1 = 1, 1
         k2, K2 = 1, 1
 
-        #More tunable constants
+        # More tunable constants
         t = 0
         eps = 1
         maxT = 1000
@@ -57,6 +58,8 @@ class LabelEstimator(object):
 
 
 if __name__ == "__main__":
-    est = LabelEstimator("./committee_matrix.txt")
-    ret = est.estimate()
-    pprint(ret)
+    est = LabelEstimator("../committee_matrix.txt")
+    cost, errors = est.estimate()
+    pprint(cost)
+    pprint(errors)
+    np.savetxt("../Label_Estimator_output.txt", cost)
