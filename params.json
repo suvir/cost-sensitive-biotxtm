@@ -1,0 +1,6 @@
+{
+  "name": "Cost-sensitive-biotxtm",
+  "tagline": "A general framework for Biomedical Text Mining",
+  "body": "#Cost sensitive learning applied to Disease and Trait recognition\r\n\r\nThis is an implementation of the methodology described in the paper [https://scholar.google.com/citations?view_op=view_citation&hl=en&user=O75HIQ0AAAAJ&citation_for_view=O75HIQ0AAAAJ:qjMakFHDy7sC here].\r\n\r\nThis repository contains code for the mining of diseases and traits.\r\n\r\nDataset : [https://www.ebi.ac.uk/gwas/docs/downloads GWAS Catalog]",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
